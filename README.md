@@ -4,7 +4,7 @@
 
 ## Miro Board
 
-https://miro.com/app/board/uXjVPypVGfk=/
+https://miro.com/app/board/uXjVPypVGfk=/?share_link_id=346746388894
 
 ## Order of operations
 
