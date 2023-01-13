@@ -16,7 +16,7 @@ function App() {
     if (type === 'head') {
       setHead(value);
     }
-    if (type === 'middle') {
+    if (type === 'shirt') {
       setMiddle(value);
     }
     if (type === 'bottom') {
