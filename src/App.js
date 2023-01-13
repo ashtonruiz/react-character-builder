@@ -6,6 +6,8 @@ import './App.css';
 
 function App() {
   const [head, setHead] = useState('one');
+  const [shirt, setMiddle] = useState('white');
+  const [bottom, setBottom] = useState('skirt');
 
   // const [input, setInput] = useState('');
 
@@ -13,6 +15,12 @@ function App() {
   const handleChange = (type, value) => {
     if (type === 'head') {
       setHead(value);
+    }
+    if (type === 'middle') {
+      setMiddle(value);
+    }
+    if (type === 'bottom') {
+      setBottom(value);
     }
   };
 
@@ -22,10 +30,10 @@ function App() {
         <h1>Pick a character</h1>
         <section className="container">
           <div className="left">
-            <Picker {...{ head, handleChange }} />
+            <Picker {...{ head, shirt, bottom, handleChange }} />
           </div>
           <div className="right">
-            <Character {...{ head }} />
+            <Character {...{ head, shirt, bottom }} />
           </div>
         </section>
       </main>
