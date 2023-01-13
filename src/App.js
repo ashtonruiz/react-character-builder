@@ -9,11 +9,13 @@ function App() {
 
   // const [input, setInput] = useState('');
 
+  // move handle change to Select.js?
   const handleChange = (type, value) => {
     if (type === 'head') {
       setHead(value);
     }
   };
+
   return (
     <div className="App" style={{ backgroundImage: `url(${background})` }}>
       <main>

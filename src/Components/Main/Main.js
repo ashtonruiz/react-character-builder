@@ -4,7 +4,7 @@ export default function Character({ head, middle, bottom }) {
   return (
     <div>
       <div className="character">
-        <div className="head" style={{ backgroundImage: `url(./${head}-head.png)` }}></div>
+        <img className="head" src={`./${head}-head.png`}></img>
       </div>
     </div>
   );
