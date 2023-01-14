@@ -14,7 +14,8 @@ function App() {
   const [middleCount, setMiddleCount] = useState(0);
   const [bottomCount, setBottomCount] = useState(0);
 
-  // const [input, setInput] = useState('');
+  const [input, setInput] = useState([]);
+  const [updateInput, setUpdate] = useState(input);
 
   // move handle change to Select.js?
   const handleChange = (type, value) => {
@@ -32,6 +33,11 @@ function App() {
     }
   };
 
+  const handleSubmit = () => {
+    setUpdate(input);
+    setInput((currentState) => [...currentState, updateInput]);
+  };
+
   return (
     <div className="App" style={{ backgroundImage: `url(${background})` }}>
       <main>
@@ -39,6 +45,18 @@ function App() {
         <section className="container">
           <div className="left">
             <Picker {...{ head, shirt, bottom, handleChange }} />
+          </div>
+          <div className="catchphrase">
+            <p>Spill the tea</p>
+            <input
+              className="catchInput"
+              placeholder="say it bestie"
+              onChange={(e) => setUpdate(e.target.value)}
+            ></input>
+            <button className="submit-btn" onClick={handleSubmit}>
+              Say it!
+            </button>
+            <Stats input={input} />
           </div>
           <div className="right">
             <Character {...{ head, shirt, bottom }} />
