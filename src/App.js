@@ -1,23 +1,73 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Character from './Components/Main/Main.js';
+import Picker from './Components/Picker.js';
+import background from './background.webp';
 import './App.css';
+import Stats from './Components/Stats.js';
 
 function App() {
+  const [head, setHead] = useState('one');
+  const [shirt, setMiddle] = useState('white');
+  const [bottom, setBottom] = useState('skirt');
+
+  const [headCount, setHeadCount] = useState(0);
+  const [middleCount, setMiddleCount] = useState(0);
+  const [bottomCount, setBottomCount] = useState(0);
+
+  const [input, setInput] = useState([]);
+  const [updateInput, setUpdate] = useState(input);
+
+  // move handle change to Select.js?
+  const handleChange = (type, value) => {
+    if (type === 'head') {
+      setHead(value);
+      setHeadCount(headCount + 1);
+    }
+    if (type === 'shirt') {
+      setMiddle(value);
+      setMiddleCount(middleCount + 1);
+    }
+    if (type === 'bottom') {
+      setBottom(value);
+      setBottomCount(bottomCount + 1);
+    }
+  };
+
+  const handleSubmit = () => {
+    setUpdate(input);
+    setInput((currentState) => [...currentState, updateInput]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ backgroundImage: `url(${background})` }}>
+      <main>
+        <h1>Pick a character</h1>
+        <section className="container">
+          <div className="left">
+            <Picker {...{ head, shirt, bottom, handleChange }} />
+          </div>
+          <div className="catchphrase">
+            <p>Spill the tea</p>
+            <input
+              className="catchInput"
+              placeholder="say it bestie"
+              onChange={(e) => setUpdate(e.target.value)}
+            ></input>
+            <button className="submit-btn" onClick={handleSubmit}>
+              Say it!
+            </button>
+            <Stats input={input} />
+          </div>
+          <div className="right">
+            <Character {...{ head, shirt, bottom }} />
+          </div>
+        </section>
+        <div className="counter"></div>
+        <h2 className="paragraph">
+          You have changed your face {headCount} times. You have changed your shirt {middleCount}{' '}
+          times. You have changed your bottoms {bottomCount} times.
+        </h2>
+      </main>
     </div>
   );
 }
